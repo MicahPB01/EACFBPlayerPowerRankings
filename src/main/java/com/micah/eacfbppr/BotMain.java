@@ -28,6 +28,7 @@ public class BotMain {
 
 
 
+
     public static void main(String[] args) {
         try {
             JDA jda = JDABuilder.createDefault(BOT_TOKEN)
