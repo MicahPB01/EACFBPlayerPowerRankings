@@ -11,6 +11,7 @@ public class AppLogger extends Formatter {
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
+
     private static final Logger logger = Logger.getLogger("AppLogger");
     static {
         logger.setUseParentHandlers(false);
