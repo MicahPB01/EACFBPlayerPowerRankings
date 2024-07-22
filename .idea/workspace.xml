@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added Register">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utilities/AppLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilities/AppLogger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\resources" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
     </key>
   </component>
@@ -114,7 +115,28 @@
       <option name="project" value="LOCAL" />
       <updated>1721680284933</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Register">
+      <created>1721680383908</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680383908</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Register">
+      <created>1721680459155</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680459155</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Register">
+      <created>1721680580981</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680580981</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
