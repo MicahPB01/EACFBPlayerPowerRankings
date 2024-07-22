@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added Register">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2jblsi74P8VMz3ySYM6J8uhgdhx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.EACFBPlayerPowerRankings [:BotMain.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/Project-4/EACFBPlayerPowerRankings",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.39310345",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\CommandInteraction" />
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\CommandInteraction\Commands" />
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\Utilities" />
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BotMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.micah.eacfbppr.BotMain" />
+      <module name="EACFBPlayerPowerRankings.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.micah.eacfbppr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BotMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="" />
+      <created>1721663865996</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721663865996</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Setup/Scopes">
+      <created>1721669364486</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1721669364486</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Register">
+      <created>1721680021898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680021898</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Register">
+      <created>1721680284933</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680284933</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Setup/Scopes" />
+    <MESSAGE value="Added Register" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Register" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
