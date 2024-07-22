@@ -15,7 +15,7 @@ public class Database {
     public static Connection getConnection() {
         try {
             // Check if the connection is null or closed
-            //System.out.println("Attempting to connect to database");
+            LOGGER.fine("Connecting to database");
             if (connection == null || connection.isClosed()) {
                 //String url = "jdbc:mysql://localhost:3306/flyingfluffypanthers"; // production computer
                 String url = "jdbc:mysql://localhost:3306/eacfbppr"; //  testing desktop server
@@ -29,6 +29,7 @@ public class Database {
                 LOGGER.info("Connected to database");
             }
         } catch (SQLException e) {
+            LOGGER.severe("Could not reach database");
             e.printStackTrace();
             return null;
         }

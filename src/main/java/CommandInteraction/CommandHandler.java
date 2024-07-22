@@ -1,7 +1,9 @@
 package CommandInteraction;
 
 import CommandInteraction.Commands.Ping;
+import CommandInteraction.Commands.Register;
 import Utilities.AppLogger;
+import com.micah.eacfbppr.Database;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -28,11 +30,54 @@ public class CommandHandler extends ListenerAdapter {
 
         switch (commandName) {
             case "ping" -> new Ping().execute(event);
+            case "register" -> new Register().execute(event);
 
             default -> event.reply("Unknown command").setEphemeral(true).queue();
         }
         LOGGER.info("Command successfully executed: " + commandName);
     }
+
+    @Override
+    public void onCommandAutoCompleteInteraction(@NotNull CommandAutoCompleteInteractionEvent event) {
+        LOGGER.fine("Setting up autocomplete options");
+        if (event.getCommandString().startsWith("/register")) {
+            String input = event.getFocusedOption().getValue();
+            List<Command.Choice> choices = getTeamChoices(input);
+            event.replyChoices(choices).queue();
+        }
+    }
+
+    private List<Command.Choice> getTeamChoices(String input)   {
+        List<String> teamNames = fetchTeamNames(input);
+        return teamNames.stream()
+                .map(name -> new Command.Choice(name, name))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> fetchTeamNames(String input) {
+        LOGGER.fine("Fetching team names");
+        List<String> names = new ArrayList<>();
+        String sql = "SELECT name FROM Teams WHERE name LIKE ? LIMIT 25";
+
+        try (Connection conn = Database.getConnection()) {
+            assert conn != null;
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, input + "%");
+
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    names.add(rs.getString("name"));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.warning("Could net fill autocomplete: " + e.getMessage());
+        }
+
+        LOGGER.fine("Got team names");
+        return names;
+    }
+
+
 
 
 
