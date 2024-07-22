@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added Register">
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Ping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utilities/AppLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utilities/DateTimeUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/Project-4/EACFBPlayerPowerRankings/src/main/java/CommandInteraction",
+    "last_opened_file_path": "C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/Project-4/EACFBPlayerPowerRankings",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.39310345",
@@ -63,10 +54,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\CommandInteraction" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\CommandInteraction\Commands" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\java\Utilities" />
-      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -109,7 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1721669364486</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Register">
+      <created>1721680021898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680021898</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Register">
+      <created>1721680284933</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680284933</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +130,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Setup/Scopes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Setup/Scopes" />
+    <MESSAGE value="Added Register" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Register" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
