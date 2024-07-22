@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added Register">
+    <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added list/ populated top25_teams">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ReportScrimmage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utilities/GoogleSheetsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilities/GoogleSheetsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721685325167</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added list/ populated top25_teams">
+      <created>1721686195589</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721686195589</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,7 +198,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Setup/Scopes" />
     <MESSAGE value="Added Register" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Register" />
+    <MESSAGE value="Added list/ populated top25_teams" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added list/ populated top25_teams" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
