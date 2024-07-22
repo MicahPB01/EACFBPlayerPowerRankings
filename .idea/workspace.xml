@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added Register">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utilities/AppLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilities/AppLogger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1721680580981</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Register">
+      <created>1721680631660</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680631660</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added Register">
+      <created>1721680662409</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721680662409</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

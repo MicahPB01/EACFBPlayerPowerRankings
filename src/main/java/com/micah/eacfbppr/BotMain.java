@@ -66,7 +66,8 @@ public class BotMain {
                 Commands.slash("ping", "Test the bot's response time!"),
                 Commands.slash("register", "Register yourself or tag someone else to register them to a team.")
                         .addOption(OptionType.STRING, "team", "The name of the team to register", true, true)
-                        .addOption(OptionType.USER, "user", "The user to register to the team", false)
+                        .addOption(OptionType.USER, "user", "The user to register to the team", false),
+                Commands.slash("list", "List taken dynasty teams and their conferences.")
 
         ).queue();
     }

@@ -31,6 +31,7 @@ public class CommandHandler extends ListenerAdapter {
         switch (commandName) {
             case "ping" -> new Ping().execute(event);
             case "register" -> new Register().execute(event);
+            case "list" -> new CommandInteraction.Commands.List().execute(event);
 
             default -> event.reply("Unknown command").setEphemeral(true).queue();
         }
