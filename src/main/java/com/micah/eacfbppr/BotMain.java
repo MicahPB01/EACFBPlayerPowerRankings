@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class BotMain {
     private static final Logger LOGGER = AppLogger.getLogger();
-    private static String BOT_TOKEN = "";
+    private static String BOT_TOKEN = "MTI2NDk3NjU1MjU0NzA1Nzc3Nw.GS8Oeo.sIZdI8J90bbqXnnobeSfpVxQajbKdXMkS821hg";
 
 
 
@@ -44,6 +44,7 @@ public class BotMain {
 
             Database.getConnection();
             GoogleSheetsHandler.updateConferenceData();
+            GoogleSheetsHandler.updateTop25Rankings();
 
 
             LOGGER.info("Bot Loaded!");
@@ -72,6 +73,10 @@ public class BotMain {
                 Commands.slash("list", "List taken dynasty teams and their conferences.")
 
         ).queue();
+    }
+
+    private static void grabCurrentTop25()   {
+
     }
 
 }

@@ -21,7 +21,9 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
@@ -121,9 +123,88 @@ public class GoogleSheetsHandler {
 
             }
             conn.close();
-
-
         }
+
+
+    }
+
+    public static void updateTop25Rankings() throws IOException, GeneralSecurityException, SQLException {
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        String spreadsheetId = "13G6iopwrreyFHzAkTcbP3jIkajjIgKGtZAw1V85_VJc";
+        String range = "Rankings!C6:C30";
+
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, range)
+                .execute();
+
+        List<List<Object>> values = response.getValues();
+        if (values == null || values.isEmpty()) {
+            LOGGER.warning("No ranking data found");
+        } else {
+            List<String> top25Teams = new ArrayList<>();
+            for (List<Object> row : values) {
+                if (!row.isEmpty()) {
+                    String teamName = (String) row.get(0);
+                    if (teamName != null && !teamName.isEmpty()) {
+                        top25Teams.add(teamName);
+                        LOGGER.fine("Ranked Team: " + teamName);
+                    }
+                }
+            }
+
+            // Use the list of top 25 teams as needed
+            LOGGER.info("Top 25 Teams: " + top25Teams);
+
+
+
+            // Use the list of top 25 teams to update the database
+            try (Connection conn = Database.getConnection()) {
+                if (conn == null) {
+                    throw new SQLException("Unable to connect to the database.");
+                }
+
+                // Clear current top 25 rankings
+                PreparedStatement clearRankingsStmt = conn.prepareStatement("TRUNCATE TABLE top25_teams");
+                clearRankingsStmt.executeUpdate();
+
+                // Insert the new rankings into the top25_teams table
+                for (int rank = 0; rank < top25Teams.size(); rank++) {
+                    String teamName = top25Teams.get(rank);
+                    int teamId = getTeamId(conn, teamName);
+                    if (teamId != -1) {
+                        PreparedStatement insertRankStmt = conn.prepareStatement(
+                                "INSERT INTO top25_teams (team_id, team_rank) VALUES (?, ?)"
+                        );
+                        insertRankStmt.setInt(1, teamId);
+                        insertRankStmt.setInt(2, rank + 1);
+                        insertRankStmt.executeUpdate();
+                    } else {
+                        LOGGER.warning("Team not found in database: " + teamName);
+                    }
+                }
+                // Update the is_ranked column in the Teams table
+                PreparedStatement updateRankedStmt = conn.prepareStatement(
+                        "UPDATE Teams SET is_ranked = CASE WHEN team_id IN (SELECT team_id FROM top25_teams) THEN 1 ELSE 0 END"
+                );
+                updateRankedStmt.executeUpdate();
+
+                LOGGER.info("Top 25 teams updated in the database.");
+            }
+        }
+    }
+
+    private static int getTeamId(Connection conn, String teamName) throws SQLException {
+        PreparedStatement checkTeamStmt = conn.prepareStatement("SELECT team_id FROM Teams WHERE name = ?");
+        checkTeamStmt.setString(1, teamName);
+        ResultSet rs = checkTeamStmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("team_id");
+        }
+        return -1;
     }
 }
 
