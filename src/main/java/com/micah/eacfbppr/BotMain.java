@@ -37,6 +37,7 @@ public class BotMain {
                     .addEventListeners(new CommandHandler())
                     .build();
 
+
             jda.awaitReady();
             registerSlashCommands(jda);
 
