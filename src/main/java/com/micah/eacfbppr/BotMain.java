@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class BotMain {
     private static final Logger LOGGER = AppLogger.getLogger();
-    private static String BOT_TOKEN = "MTI2NDk3NjU1MjU0NzA1Nzc3Nw.GS8Oeo.sIZdI8J90bbqXnnobeSfpVxQajbKdXMkS821hg";
+    private static String BOT_TOKEN = "";
 
 
 
@@ -32,7 +32,7 @@ public class BotMain {
     public static void main(String[] args) {
         try {
             JDA jda = JDABuilder.createDefault(BOT_TOKEN)
-                    .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
+                    .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                     .setActivity(Activity.customStatus("GKCO!"))
                     .enableCache(CacheFlag.VOICE_STATE)
                     .addEventListeners(new CommandHandler())
@@ -70,7 +70,12 @@ public class BotMain {
                 Commands.slash("register", "Register yourself or tag someone else to register them to a team.")
                         .addOption(OptionType.STRING, "team", "The name of the team to register", true, true)
                         .addOption(OptionType.USER, "user", "The user to register to the team", false),
-                Commands.slash("list", "List taken dynasty teams and their conferences.")
+                Commands.slash("list", "List taken dynasty teams and their conferences."),
+                Commands.slash("report_scrimmage", "Record the final score of a friendly match.")
+                        .addOption(OptionType.STRING, "first_team","The first player/team in the match.", true)
+                        .addOption(OptionType.STRING, "first_team_score", "Score of the first player/team", true)
+                        .addOption(OptionType.STRING, "second_team", "The second player/team in the match.",true)
+                        .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team", true)
 
         ).queue();
     }

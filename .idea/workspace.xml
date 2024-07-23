@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added list/ populated top25_teams">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ReportScrimmage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ReportScrimmage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ReportScrimmage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,19 +41,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.EACFBPlayerPowerRankings [:BotMain.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/Project-4/EACFBPlayerPowerRankings",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.39310345",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.EACFBPlayerPowerRankings [:BotMain.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps/Project-4/EACFBPlayerPowerRankings&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.39310345&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps\Project-4\EACFBPlayerPowerRankings" />
