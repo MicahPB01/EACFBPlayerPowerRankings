@@ -1,5 +1,6 @@
 package CommandInteraction;
 
+import CommandInteraction.Commands.FriendlyRanks;
 import CommandInteraction.Commands.Ping;
 import CommandInteraction.Commands.Register;
 import CommandInteraction.Commands.ReportScrimmage;
@@ -34,6 +35,7 @@ public class CommandHandler extends ListenerAdapter {
             case "register" -> new Register().execute(event);
             case "list" -> new CommandInteraction.Commands.List().execute(event);
             case "report_scrimmage" -> new ReportScrimmage().execute(event);
+            case "friendly_rankings" -> new FriendlyRanks().execute(event);
 
             default -> event.reply("Unknown command").setEphemeral(true).queue();
         }

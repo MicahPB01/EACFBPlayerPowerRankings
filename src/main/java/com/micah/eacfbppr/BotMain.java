@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class BotMain {
     private static final Logger LOGGER = AppLogger.getLogger();
-    private static String BOT_TOKEN = "";
+    private static final String BOT_TOKEN = "";
 
 
 
@@ -75,7 +75,8 @@ public class BotMain {
                         .addOption(OptionType.STRING, "first_team","The first player/team in the match.", true)
                         .addOption(OptionType.STRING, "first_team_score", "Score of the first player/team", true)
                         .addOption(OptionType.STRING, "second_team", "The second player/team in the match.",true)
-                        .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team", true)
+                        .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team", true),
+                Commands.slash("friendly_rankings", "Get the list of friendly rankings.")
 
         ).queue();
     }
