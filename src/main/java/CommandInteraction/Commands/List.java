@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class List implements Command {
+public class List<C> implements Command {
     @Override
     public void execute(SlashCommandInteractionEvent event) {
 

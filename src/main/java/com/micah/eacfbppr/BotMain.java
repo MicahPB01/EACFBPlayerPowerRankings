@@ -76,7 +76,14 @@ public class BotMain {
                         .addOption(OptionType.STRING, "first_team_score", "Score of the first player/team", true)
                         .addOption(OptionType.STRING, "second_team", "The second player/team in the match.",true)
                         .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team", true),
-                Commands.slash("friendly_rankings", "Get the list of friendly rankings.")
+                Commands.slash("friendly_rankings", "Get the list of friendly rankings."),
+                Commands.slash("report_ranked", "Record the final score of a dynasty match.")
+                        .addOption(OptionType.STRING, "first_team","The first player/team in the match.", true)
+                        .addOption(OptionType.STRING, "first_team_score", "Score of the first player/team", true)
+                        .addOption(OptionType.STRING, "second_team", "The second player/team in the match.",true)
+                        .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team.", true),
+                Commands.slash("power_rankings", "View the Competitive Power Rankings."),
+                Commands.slash("conference_rankings", "View the conference Power Rankings.")
 
         ).queue();
     }

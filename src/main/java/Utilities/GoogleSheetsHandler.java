@@ -197,7 +197,7 @@ public class GoogleSheetsHandler {
         }
     }
 
-    private static int getTeamId(Connection conn, String teamName) throws SQLException {
+    public static int getTeamId(Connection conn, String teamName) throws SQLException {
         PreparedStatement checkTeamStmt = conn.prepareStatement("SELECT team_id FROM Teams WHERE name = ?");
         checkTeamStmt.setString(1, teamName);
         ResultSet rs = checkTeamStmt.executeQuery();
