@@ -2,6 +2,7 @@ package CommandInteraction.Commands.Report;
 
 import CommandInteraction.Command;
 import Utilities.AppLogger;
+import java.sql.Date;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.Member;
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -110,6 +112,32 @@ public abstract class ReportBase implements Command {
         updateRankStmt.executeUpdate();
     }
 
+    protected void addMatchToDatabase(Connection conn, String firstEntity, User firstUser, String secondEntity, User secondUser, int team1Score, int team2Score, int firstTeamRankChange, int secondTeamRankChange, int firstTeamCurrentRank, int secondTeamCurrentRank) throws SQLException {
+        LOGGER.fine("Adding match to database.");
+
+        int firstTeamId = getTeamId(conn, firstUser != null ? firstUser.getId() : null, firstEntity);
+        int secondTeamId = getTeamId(conn, secondUser != null ? secondUser.getId() : null, secondEntity);
+
+
+
+        String insertQuery = "INSERT INTO matches (team1_name, team2_name, team1_id, team2_id, team1_score, team2_score, team1_rank_change, team2_rank_change, team1_rank_before_match, team2_rank_before_match, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement addMatch = conn.prepareStatement(insertQuery)) {
+            addMatch.setString(1, firstUser != null ? firstUser.getName() : firstEntity);
+            addMatch.setString(2, secondUser != null ? secondUser.getName() : secondEntity);
+            addMatch.setInt(3, firstTeamId);
+            addMatch.setInt(4, secondTeamId);
+            addMatch.setInt(5, team1Score);
+            addMatch.setInt(6, team2Score);
+            addMatch.setInt(7, firstTeamRankChange);
+            addMatch.setInt(8, secondTeamRankChange);
+            addMatch.setInt(9, firstTeamCurrentRank);
+            addMatch.setInt(10, secondTeamCurrentRank);
+            addMatch.setDate(11, Date.valueOf(LocalDate.now()));
+
+            addMatch.executeUpdate();
+        }
+    }
+
     protected int getPoints(Connection conn, String discordId, String pointsColumn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("SELECT " + pointsColumn + " FROM players WHERE discord_id = ?");
         stmt.setString(1, discordId);
@@ -120,15 +148,7 @@ public abstract class ReportBase implements Command {
         return 0; // default if not found
     }
 
-    protected static class PointsResult {
-        public int pointsGained;
-        public int pointsLost;
 
-        public PointsResult(int pointsGained, int pointsLost) {
-            this.pointsGained = pointsGained;
-            this.pointsLost = pointsLost;
-        }
-    }
 
     protected PointsResult calculatePoints(int rankWinning, int rankLosing, int scoreDifferential) {
         LOGGER.fine("Calculating points");
@@ -200,5 +220,30 @@ public abstract class ReportBase implements Command {
     protected boolean isUserId(String entity) {
         // Check if the entity is a user mention (starts with <@ and ends with >)
         return !entity.startsWith("<@") || !entity.endsWith(">");
+    }
+
+    private int getTeamId(Connection conn, String userId, String entityName) throws SQLException {
+        if (userId == null) {
+            // If userId is null, assume it's an NPC team and retrieve the team_id based on the entity name
+            String query = "SELECT team_id FROM teams WHERE name = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, entityName);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("team_id");
+                }
+            }
+        } else {
+            // Retrieve the team_id based on the user's team association
+            String query = "SELECT team_id FROM players WHERE discord_id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, userId);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt("team_id");
+                }
+            }
+        }
+        return 135; // NPC team id
     }
 }

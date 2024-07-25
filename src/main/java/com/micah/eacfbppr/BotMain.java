@@ -83,13 +83,14 @@ public class BotMain {
                         .addOption(OptionType.STRING, "second_team", "The second player/team in the match.",true)
                         .addOption(OptionType.STRING, "second_team_score", "Score of the second player/team.", true),
                 Commands.slash("power_rankings", "View the Competitive Power Rankings."),
-                Commands.slash("conference_rankings", "View the conference Power Rankings.")
+                Commands.slash("conference_rankings", "View the conference Power Rankings."),
+                Commands.slash("previous_matches", "View previous matches for a user or team.")
+                        .addOption(OptionType.STRING, "user", "Tag the player or team to see previous match results.", true)
+
 
         ).queue();
     }
 
-    private static void grabCurrentTop25()   {
 
-    }
 
 }

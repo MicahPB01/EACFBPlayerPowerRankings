@@ -66,10 +66,17 @@ public class ReportRanked extends ReportBase {
                     User winningUser = isFirstUserWinner ? firstUser : secondUser;
                     User losingUser = isFirstUserWinner ? secondUser : firstUser;
 
+                    //get winning/losing scores
+                    int winningScore = isFirstUserWinner ? firstScore : secondScore;
+                    int losingScore = isFirstUserWinner ? secondScore : firstScore;
+
+
                     // Check if the entities are NPCs
                     boolean isWinningEntityNpc = isTeam(conn, normalizeEntity(firstEntity)) && isPlayer(conn, normalizeEntity(firstEntity)) && isUserId(firstEntity);
                     boolean isLosingEntityNpc = isTeam(conn, normalizeEntity(secondEntity)) && isPlayer(conn, normalizeEntity(secondEntity)) && isUserId(secondEntity);
                     double weightFactor = getWeightFactor(conn, winningUser, losingUser, isWinningEntityNpc, isLosingEntityNpc);
+
+
 
 
                     // Calculate current ranks
@@ -89,17 +96,23 @@ public class ReportRanked extends ReportBase {
                     int adjustedPointsGained = (int) (pointsResult.pointsGained * weightFactor);
                     int adjustedPointsLost = (int) (pointsResult.pointsLost * weightFactor);
 
-                    // Update rankings
-                    updateRankings(conn, winningUser, losingUser, adjustedPointsGained, adjustedPointsLost);
+                    //get ranking points before inserting match
+                    int winningUserPointsBefore = getPoints(conn, winningUser != null ? winningUser.getId() : null, "Power_Points");
+                    int losingUserPointsBefore = getPoints(conn, losingUser != null ? losingUser.getId() : null, "Power_Points");
+
 
                     String winningEntity = isFirstUserWinner ? firstEntity : secondEntity;
                     String losingEntity = isFirstUserWinner ? secondEntity : firstEntity;
 
-                    int winningScore = Math.max(firstScore, secondScore);
-                    int losingScore = Math.min(firstScore, secondScore);
+                    // Update rankings
+                    updateRankings(conn, winningEntity, winningUser, losingEntity, losingUser, adjustedPointsGained, adjustedPointsLost, winningScore, losingScore, adjustedPointsGained, -adjustedPointsLost, winningUserPointsBefore, losingUserPointsBefore);
+
+
 
                     int winningUserPoints = getPoints(conn, winningUser != null ? winningUser.getId() : null, "Power_Points");
                     int losingUserPoints = getPoints(conn, losingUser != null ? losingUser.getId() : null, "Power_Points");
+
+
 
                     EmbedBuilder embedBuilder = new EmbedBuilder();
                     embedBuilder.setTitle("Ranked Match Report")
@@ -120,7 +133,7 @@ public class ReportRanked extends ReportBase {
         });
     }
 
-    private void updateRankings(Connection conn, User winningUser, User losingUser, int pointsGained, int pointsLost) throws SQLException {
+    private void updateRankings(Connection conn, String firstEntity, User winningUser, String secondEntity, User losingUser, int pointsGained, int pointsLost, int firstScore, int secondScore, int adjustedPointsGained, int adjustedPointsLost, int winningUserPointsBefore, int losingUserPointsBefore) throws SQLException {
         LOGGER.fine("Updating Rankings");
 
         // Ensure both users exist in the players table
@@ -133,7 +146,11 @@ public class ReportRanked extends ReportBase {
             ensurePlayerExists(conn, losingUser);
             adjustPlayerRank(conn, losingUser.getId(), -pointsLost, "Power_Points");
         }
+
+        // Add the match to the database
+        addMatchToDatabase(conn, firstEntity, winningUser, secondEntity, losingUser, firstScore, secondScore, adjustedPointsGained, adjustedPointsLost, winningUserPointsBefore, losingUserPointsBefore);
     }
+
 
     private boolean isNpcTop25(Connection conn, User user) throws SQLException {
         if (user == null) {

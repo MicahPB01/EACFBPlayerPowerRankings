@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added scrimmage_report">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/CompetitiveRank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ConferenceRanking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportRanked.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportScrimmage.java" afterDir="false" />
+    <list default="true" id="b468b078-8b38-4ef2-8b42-21f7b20815c8" name="Changes" comment="Added ranked_report">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/PreviousMatches.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/PointsResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/ReportScrimmage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utilities/GoogleSheetsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilities/GoogleSheetsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportRanked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommandInteraction/Commands/Report/ReportRanked.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/micah/eacfbppr/BotMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721715018091</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added ranked_report">
+      <created>1721795125991</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721795125991</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +217,8 @@
     <MESSAGE value="Added Register" />
     <MESSAGE value="Added list/ populated top25_teams" />
     <MESSAGE value="Added scrimmage_report" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added scrimmage_report" />
+    <MESSAGE value="Added ranked_report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ranked_report" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
