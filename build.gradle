@@ -39,8 +39,8 @@ dependencies {
 }
 
 compileJava   {
-    sourceCompatibility = '18'
-    targetCompatibility = '18'
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 }
 
 tasks.jar {

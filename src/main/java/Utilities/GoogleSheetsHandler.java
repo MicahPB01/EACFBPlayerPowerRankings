@@ -35,7 +35,7 @@ public class GoogleSheetsHandler {
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-    private static final String CREDENTIALS_FILE_PATH = "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\Project-4\\EACFBPlayerPowerRankings\\src\\main\\resources\\client_secret_460985092671-bfnpalea6diaqavvs3tdhj7i4ragf1dq.apps.googleusercontent.com.json";
+    private static final String CREDENTIALS_FILE_PATH = "client_secret_460985092671-bfnpalea6diaqavvs3tdhj7i4ragf1dq.apps.googleusercontent.com.json";
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         // Load client secrets.
@@ -91,14 +91,14 @@ public class GoogleSheetsHandler {
             }
 
             // Clear current conference assignments
-            PreparedStatement clearStmt = conn.prepareStatement("UPDATE Teams SET conference_id = NULL");
+            PreparedStatement clearStmt = conn.prepareStatement("UPDATE teams SET conference_id = NULL");
             clearStmt.executeUpdate();
 
             for (int col = 0; col < values.get(0).size(); col++) {
                 String conferenceName = (String) values.get(0).get(col);
 
                 // Get conference ID
-                PreparedStatement getConfIdStmt = conn.prepareStatement("SELECT conference_id FROM Conferences WHERE name = ?");
+                PreparedStatement getConfIdStmt = conn.prepareStatement("SELECT conference_id FROM conferences WHERE name = ?");
                 getConfIdStmt.setString(1, conferenceName);
                 var rs = getConfIdStmt.executeQuery();
                 int conferenceId = 0;
@@ -112,7 +112,7 @@ public class GoogleSheetsHandler {
 
                         if (teamName != null && !teamName.isEmpty()) {
                             // Update team with conference
-                            PreparedStatement updateStmt = conn.prepareStatement("UPDATE Teams SET conference_id = ? WHERE name = ?");
+                            PreparedStatement updateStmt = conn.prepareStatement("UPDATE teams SET conference_id = ? WHERE name = ?");
                             updateStmt.setInt(1, conferenceId);
                             updateStmt.setString(2, teamName);
                             updateStmt.executeUpdate();
@@ -188,7 +188,7 @@ public class GoogleSheetsHandler {
                 }
                 // Update the is_ranked column in the Teams table
                 PreparedStatement updateRankedStmt = conn.prepareStatement(
-                        "UPDATE Teams SET is_ranked = CASE WHEN team_id IN (SELECT team_id FROM top25_teams) THEN 1 ELSE 0 END"
+                        "UPDATE teams SET is_ranked = CASE WHEN team_id IN (SELECT team_id FROM top25_teams) THEN 1 ELSE 0 END"
                 );
                 updateRankedStmt.executeUpdate();
 
@@ -198,7 +198,7 @@ public class GoogleSheetsHandler {
     }
 
     public static int getTeamId(Connection conn, String teamName) throws SQLException {
-        PreparedStatement checkTeamStmt = conn.prepareStatement("SELECT team_id FROM Teams WHERE name = ?");
+        PreparedStatement checkTeamStmt = conn.prepareStatement("SELECT team_id FROM teams WHERE name = ?");
         checkTeamStmt.setString(1, teamName);
         ResultSet rs = checkTeamStmt.executeQuery();
         if (rs.next()) {

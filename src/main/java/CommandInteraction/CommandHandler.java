@@ -40,6 +40,8 @@ public class CommandHandler extends ListenerAdapter {
             case "power_rankings" -> new CompetitiveRank().execute(event);
             case "conference_rankings" -> new ConferenceRanking().execute(event);
             case "previous_matches" -> new PreviousMatches().execute(event);
+            case "rank_soflo" -> event.reply("SoFlo is the best player there is in the current Dynasty. No questions asked.").queue();
+
 
 
             default -> event.reply("Unknown command").setEphemeral(true).queue();

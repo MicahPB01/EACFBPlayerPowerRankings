@@ -15,11 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 public class ReportRanked extends ReportBase {
-    private static final int POWER_DEFAULT = 10;
-    private static final double NPC_WEIGHT_FACTOR = 0.60;
-    private static final double NPC_TOP_25_WEIGHT_FACTOR = 1;
     private static final Logger LOGGER = AppLogger.getLogger();
-
     @Override
     public void execute(SlashCommandInteractionEvent event) {
         OptionMapping firstOption = event.getOption("first_team");
@@ -36,6 +32,9 @@ public class ReportRanked extends ReportBase {
         String firstScoreString = firstScoreOption.getAsString();
         String secondEntity = secondOption.getAsString();
         String secondScoreString = secondScoreOption.getAsString();
+
+        LOGGER.fine("Checking entity: " + firstEntity);
+        LOGGER.fine("Checking entity: " + secondEntity);
 
         int firstScore;
         int secondScore;
@@ -66,40 +65,33 @@ public class ReportRanked extends ReportBase {
                     User winningUser = isFirstUserWinner ? firstUser : secondUser;
                     User losingUser = isFirstUserWinner ? secondUser : firstUser;
 
-                    //get winning/losing scores
-                    int winningScore = isFirstUserWinner ? firstScore : secondScore;
-                    int losingScore = isFirstUserWinner ? secondScore : firstScore;
 
-
-                    // Check if the entities are NPCs
-                    boolean isWinningEntityNpc = isTeam(conn, normalizeEntity(firstEntity)) && isPlayer(conn, normalizeEntity(firstEntity)) && isUserId(firstEntity);
-                    boolean isLosingEntityNpc = isTeam(conn, normalizeEntity(secondEntity)) && isPlayer(conn, normalizeEntity(secondEntity)) && isUserId(secondEntity);
-                    double weightFactor = getWeightFactor(conn, winningUser, losingUser, isWinningEntityNpc, isLosingEntityNpc);
-
-
-
+                    LOGGER.fine("First: " + firstEntity + " Second: " + secondEntity);
 
                     // Calculate current ranks
-                    int rankWinningUser = winningUser != null ? getPoints(conn, winningUser.getId(), "Power_Points") : 0;
-                    int rankLosingUser = losingUser != null ? getPoints(conn, losingUser.getId(), "Power_Points") : 0;
+                    int rankWinningUser = getRankForEntity(conn, winningUser, isFirstUserWinner ? firstEntity : secondEntity, true);
+                    int rankLosingUser = getRankForEntity(conn, losingUser, !isFirstUserWinner ? firstEntity : secondEntity, false);
 
                     LOGGER.fine("Winning Rank: " + rankWinningUser + " : Losing Rank: " + rankLosingUser);
 
+                    // Get winning/losing scores
+                    int winningScore = isFirstUserWinner ? firstScore : secondScore;
+                    int losingScore = isFirstUserWinner ? secondScore : firstScore;
+
                     // Calculate score differential
-                    int scoreDifferential = Math.abs(firstScore - secondScore);
+                    int scoreDifferential = winningScore - losingScore;
 
                     // Calculate points gained and lost
                     PointsResult pointsResult = calculatePoints(rankWinningUser, rankLosingUser, scoreDifferential);
                     LOGGER.fine("Got point results: " + pointsResult.pointsGained + " " + pointsResult.pointsLost);
 
                     // Adjust points with weight factor
-                    int adjustedPointsGained = (int) (pointsResult.pointsGained * weightFactor);
-                    int adjustedPointsLost = (int) (pointsResult.pointsLost * weightFactor);
+                    int adjustedPointsGained = pointsResult.pointsGained;
+                    int adjustedPointsLost = pointsResult.pointsLost;
 
-                    //get ranking points before inserting match
+                    // Get ranking points before inserting match
                     int winningUserPointsBefore = getPoints(conn, winningUser != null ? winningUser.getId() : null, "Power_Points");
                     int losingUserPointsBefore = getPoints(conn, losingUser != null ? losingUser.getId() : null, "Power_Points");
-
 
                     String winningEntity = isFirstUserWinner ? firstEntity : secondEntity;
                     String losingEntity = isFirstUserWinner ? secondEntity : firstEntity;
@@ -107,12 +99,8 @@ public class ReportRanked extends ReportBase {
                     // Update rankings
                     updateRankings(conn, winningEntity, winningUser, losingEntity, losingUser, adjustedPointsGained, adjustedPointsLost, winningScore, losingScore, adjustedPointsGained, -adjustedPointsLost, winningUserPointsBefore, losingUserPointsBefore);
 
-
-
                     int winningUserPoints = getPoints(conn, winningUser != null ? winningUser.getId() : null, "Power_Points");
                     int losingUserPoints = getPoints(conn, losingUser != null ? losingUser.getId() : null, "Power_Points");
-
-
 
                     EmbedBuilder embedBuilder = new EmbedBuilder();
                     embedBuilder.setTitle("Ranked Match Report")
@@ -152,43 +140,28 @@ public class ReportRanked extends ReportBase {
     }
 
 
-    private boolean isNpcTop25(Connection conn, User user) throws SQLException {
-        if (user == null) {
-            return false;
-        }
+    private boolean isNpcTop25(Connection conn, String npcEntity) throws SQLException {
+        LOGGER.fine("Checking if: " + npcEntity + " is in the top25");
 
-        String query = "SELECT COUNT(*) AS rank_position " +
-                "FROM top25_teams t25 " +
-                "JOIN players p ON t25.team_id = p.team_id " +
-                "WHERE p.discord_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setString(1, user.getId());
-        ResultSet rs = stmt.executeQuery();
+        String query = "SELECT is_ranked FROM teams WHERE name = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, npcEntity);
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            int rankPosition = rs.getInt("rank_position");
-            return rankPosition > 0;
+            if (rs.next()) {
+                return rs.getInt("is_ranked") > 0;
+            }
         }
 
         return false;
     }
 
-    private double getWeightFactor(Connection conn, User winningUser, User losingUser, boolean isWinningEntityNpc, boolean isLosingEntityNpc) throws SQLException {
-        double weightFactor = 1.0;
-
-        if (isWinningEntityNpc || isLosingEntityNpc) {
-            // Check if the NPCs are in the top 25
-            boolean isWinningNpcTop25 = isNpcTop25(conn, winningUser);
-            boolean isLosingNpcTop25 = isNpcTop25(conn, losingUser);
-
-            // Determine the higher weight factor if any NPC is in the top 25
-            if (isWinningNpcTop25 || isLosingNpcTop25) {
-                weightFactor = NPC_TOP_25_WEIGHT_FACTOR;
-            } else {
-                weightFactor = NPC_WEIGHT_FACTOR;
-            }
+    private int getRankForEntity(Connection conn, User user, String entity, boolean isWinner) throws SQLException {
+        if (user != null) {
+            return getPoints(conn, user.getId(), "Power_Points");
+        } else {
+            // If NPC team is the winner, return 0, if the NPC team is the loser and is in the top 25, return 250, else return 0
+            return !isWinner && isNpcTop25(conn, entity) ? 200 : 0;
         }
-
-        return weightFactor;
     }
 }

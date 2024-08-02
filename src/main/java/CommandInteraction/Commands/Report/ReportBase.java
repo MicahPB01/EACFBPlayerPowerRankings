@@ -151,40 +151,48 @@ public abstract class ReportBase implements Command {
 
 
     protected PointsResult calculatePoints(int rankWinning, int rankLosing, int scoreDifferential) {
+
         LOGGER.fine("Calculating points");
         // Calculate rank differential
         int rankDifferential = rankLosing - rankWinning;
-        LOGGER.fine("Rank Difference: " + rankDifferential);
+        LOGGER.fine("Rank Difference: " + rankDifferential + "Score Difference: " + scoreDifferential);
 
         // Calculate base points
-        int basePointsWinning;
-        int basePointsLosing;
+        double basePointsWinning;
+        double basePointsLosing;
         if (rankDifferential < 0) {
             // Higher ranked team wins
             LOGGER.fine("Higher ranked team won");
-            basePointsWinning = Math.max(1, 10 + (rankDifferential / 100));
-            basePointsLosing = Math.max(1, 8 + (rankDifferential / 100));
+            basePointsWinning = Math.max(1, 10 + (rankDifferential / 100.0));
+            basePointsLosing = Math.max(1, 8 + (rankDifferential / 100.0));
         } else {
             // Lower ranked team wins
             LOGGER.fine("Lower ranked team won");
-            basePointsWinning = 10 + (rankDifferential / 100);
-            basePointsLosing = 8 + (rankDifferential / 100);
+            basePointsWinning = 10 + (rankDifferential / 100.0);
+            basePointsLosing = 8 + (rankDifferential / 100.0);
         }
+
+        LOGGER.fine("Base Win: " + basePointsWinning + " Base Lose: " + basePointsLosing);
 
         // Calculate score multiplier
         double scoreMultiplier = 1 + (scoreDifferential / 10.0);
 
+        LOGGER.fine("Multiplier: " + scoreMultiplier);
+
         // Calculate total points
-        int pointsGained = (int) (basePointsWinning * scoreMultiplier);
-        int pointsLost = (int) (basePointsLosing * scoreMultiplier);
+        double pointsGained = (int) (basePointsWinning * scoreMultiplier);
+        double pointsLost = (int) (basePointsLosing * scoreMultiplier);
+
+        int finalGained;
+        int finalLost;
 
         // Adjust points to ensure winning has a slightly higher impact
-        pointsGained = Math.max(pointsGained, basePointsWinning);
-        pointsLost = Math.max(pointsLost, basePointsLosing);
+        finalGained = (int) Math.max(pointsGained, basePointsWinning);
+        finalLost = (int) Math.max(pointsLost, basePointsLosing);
 
-        LOGGER.fine("Points won/lost: " + pointsGained + " " + pointsLost);
+        LOGGER.fine("Points won/lost: " + finalGained + " " + finalLost);
 
-        return new PointsResult(pointsGained, pointsLost);
+        return new PointsResult(finalGained, finalLost);
     }
 
     protected String normalizeEntity(String entity) {
@@ -197,19 +205,10 @@ public abstract class ReportBase implements Command {
         return entity;
     }
 
-    protected boolean isTeam(Connection conn, String entityName) throws SQLException {
-        LOGGER.fine("Checking if entity is a team: " + entityName);
-        PreparedStatement checkTeamStmt = conn.prepareStatement("SELECT COUNT(*) FROM Teams WHERE name = ?");
-        checkTeamStmt.setString(1, entityName);
-        ResultSet rs = checkTeamStmt.executeQuery();
-        boolean isTeam = rs.next() && rs.getInt(1) > 0;
-        LOGGER.fine("Is team: " + isTeam);
-        return !isTeam;
-    }
 
     protected boolean isPlayer(Connection conn, String entityName) throws SQLException {
         LOGGER.fine("Checking if entity is a player: " + entityName);
-        PreparedStatement checkPlayerStmt = conn.prepareStatement("SELECT COUNT(*) FROM players WHERE name = ?");
+        PreparedStatement checkPlayerStmt = conn.prepareStatement("SELECT COUNT(*) FROM players WHERE discord_id = ?");
         checkPlayerStmt.setString(1, entityName);
         ResultSet rs = checkPlayerStmt.executeQuery();
         boolean isPlayer = rs.next() && rs.getInt(1) > 0;
@@ -217,10 +216,7 @@ public abstract class ReportBase implements Command {
         return !isPlayer;
     }
 
-    protected boolean isUserId(String entity) {
-        // Check if the entity is a user mention (starts with <@ and ends with >)
-        return !entity.startsWith("<@") || !entity.endsWith(">");
-    }
+
 
     private int getTeamId(Connection conn, String userId, String entityName) throws SQLException {
         if (userId == null) {
