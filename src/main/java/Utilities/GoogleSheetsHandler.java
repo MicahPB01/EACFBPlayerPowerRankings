@@ -35,7 +35,8 @@ public class GoogleSheetsHandler {
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-    private static final String CREDENTIALS_FILE_PATH = "client_secret_460985092671-bfnpalea6diaqavvs3tdhj7i4ragf1dq.apps.googleusercontent.com.json";
+    //private static final String CREDENTIALS_FILE_PATH = "client_secret_460985092671-bfnpalea6diaqavvs3tdhj7i4ragf1dq.apps.googleusercontent.com.json";
+    private static final String CREDENTIALS_FILE_PATH = "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\Project-4\\EACFBPlayerPowerRankings\\src\\main\\resources\\client_secret_460985092671-bfnpalea6diaqavvs3tdhj7i4ragf1dq.apps.googleusercontent.com.json";
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         // Load client secrets.

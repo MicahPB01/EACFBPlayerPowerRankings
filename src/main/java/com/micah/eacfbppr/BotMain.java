@@ -86,7 +86,10 @@ public class BotMain {
                 Commands.slash("conference_rankings", "View the conference Power Rankings."),
                 Commands.slash("previous_matches", "View previous matches for a user or team.")
                         .addOption(OptionType.STRING, "user", "Tag the player or team to see previous match results.", false),
-                Commands.slash("rank_soflo", "Direct request for SoFlo")
+                Commands.slash("rank_soflo", "Direct request for SoFlo"),
+                Commands.slash("audio", "Play an audio track from a YouTube URL.")
+                        .addOption(OptionType.STRING, "url", "Paste the url of the video you wish to get the audio from.", true),
+                Commands.slash("saudio", "Stops the current audio.")
 
 
         ).queue();

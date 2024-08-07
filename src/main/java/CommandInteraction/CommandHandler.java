@@ -1,6 +1,8 @@
 package CommandInteraction;
 
 import CommandInteraction.Commands.*;
+import CommandInteraction.Commands.Audio.Play;
+import CommandInteraction.Commands.Audio.Stop;
 import CommandInteraction.Commands.Report.ReportRanked;
 import CommandInteraction.Commands.Report.ReportScrimmage;
 import Utilities.AppLogger;
@@ -30,6 +32,10 @@ public class CommandHandler extends ListenerAdapter {
         String commandName = event.getName();
         LOGGER.fine("Received command: " + commandName);
 
+        if(commandName.equals("saudio"))   {
+            LOGGER.fine("EQUAL");
+        }
+
         switch (commandName) {
             case "ping" -> new Ping().execute(event);
             case "register" -> new Register().execute(event);
@@ -41,6 +47,8 @@ public class CommandHandler extends ListenerAdapter {
             case "conference_rankings" -> new ConferenceRanking().execute(event);
             case "previous_matches" -> new PreviousMatches().execute(event);
             case "rank_soflo" -> event.reply("SoFlo is the best player there is in the current Dynasty. No questions asked.").queue();
+            case "audio" -> new Play().execute(event);
+            case "saudio" -> new Stop().execute(event);
 
 
 
